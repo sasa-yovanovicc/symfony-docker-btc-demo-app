@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+get_bitcoin_exchange_rate:
+    path: /
+    methods: ["GET"]
+    defaults: { _controller: App\Controller\ExchangeRateController:getRates }

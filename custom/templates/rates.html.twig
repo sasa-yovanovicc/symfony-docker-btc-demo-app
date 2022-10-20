@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="data">
+<strong> Bitcoun exchange rate at {{ time }}</strong>
+<br/>
+
+USD {{usd}}
+<br/>
+EUR {{eur}}
+</div>
+
+<div id="timeDiv">Reload page in <span id="time"></span></div>
+{% endblock %}
+{% block javascripts %}
+<script>
+var countDownDate = new Date();
+countDownDate.setSeconds(countDownDate.getSeconds() + 15);
+console.log(countDownDate);
+
+var x = setInterval(function() {
+  var now = new Date().getTime();
+
+  var distance = countDownDate - now;
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("time").innerHTML = seconds + "s ";
+
+
+  if (distance < 1) {
+    clearInterval(x);
+    location.reload()
+  }
+}, 1000);
+</script>
+{% endblock %}

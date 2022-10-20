@@ -2,15 +2,21 @@
 
 A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework, with full [HTTP/2](https://symfony.com/doc/current/weblink.html), HTTP/3 and HTTPS support.
 
-![CI](https://github.com/dunglas/symfony-docker/workflows/CI/badge.svg)
-
 ## Getting Started
 
 1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
-2. Run `docker compose build --pull --no-cache` to build fresh images
-3. Run `docker compose up` (the logs will be displayed in the current shell)
-4. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
+2. Run ./build.sh  and wait until it finished
+3. Open `http://localhost:8910` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
+4. Webpage will be redirected to HTTP `https://localhost` (port 433)
 5. Run `docker compose down --remove-orphans` to stop the Docker containers.
+
+## Demo APP configuration
+
+* Application consumes https://api.coindesk.com/v1/bpi/currentprice.json and shows EUR adn USD exchange rate fopr Bitcoin (BTC)
+* API endpoint is stored in /src/config/services.yaml file as:
+parameters:
+`app.exchange_rates_url: "https://api.coindesk.com/v1/bpi/currentprice.json"`
+* Application reload page every 15 seconds and get a new/actual exchange rate
 
 ## Features
 
@@ -22,24 +28,12 @@ A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony
 * [Vulcain](https://vulcain.rocks) support
 * Native [XDebug](docs/xdebug.md) integration
 * Just 2 services (PHP FPM and Caddy server)
-* Super-readable configuration
 
 **Enjoy!**
-
-## Docs
-
-1. [Build options](docs/build.md)
-2. [Using Symfony Docker with an existing project](docs/existing-project.md)
-3. [Support for extra services](docs/extra-services.md)
-4. [Deploying in production](docs/production.md)
-5. [Debugging with Xdebug](docs/xdebug.md)
-6. [Using a Makefile](docs/makefile.md)
-7. [Troubleshooting](docs/troubleshooting.md)
-
 ## License
 
 Symfony Docker is available under the MIT License.
 
 ## Credits
 
-Created by [Kévin Dunglas](https://dunglas.fr), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
+Created by [Saša Jovanović] (https://twitter.com/bastijan), based on git repo (https://github.com/dunglas/symfony-docker) by [Kévin Dunglas](https://dunglas.fr), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
