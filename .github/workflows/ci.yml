@@ -25,10 +25,13 @@ jobs:
                     esac
                   done
                   exit 1
-            - name: Start composer 
+            - name: Start composer require symfony/yaml
               run: docker compose run --rm php composer require symfony/yaml
+            - name: Start composer require symfony/http-client  
               run: docker compose run --rm php composer require symfony/http-client
+            - name: Start composer require symfony/twig-bundle
               run: docker compose run --rm php composer require symfony/twig-bundle
+            - name: Start composer require symfony/asset
               run: docker compose run --rm php composer require symfony/asset               
             - name: Check HTTP reachability
               run: curl http://localhost:8910
