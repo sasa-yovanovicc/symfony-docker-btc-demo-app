@@ -32,7 +32,9 @@ jobs:
             - name: Start composer require symfony/twig-bundle
               run: docker compose run --rm php composer require symfony/twig-bundle
             - name: Start composer require symfony/asset
-              run: docker compose run --rm php composer require symfony/asset               
+              run: docker compose run --rm php composer require symfony/asset    
+            - name: copy custom files
+              run: cp -r ./custom/* ./
             - name: Check HTTP reachability
               run: curl http://localhost:8910
             - name: Check HTTPS reachability
